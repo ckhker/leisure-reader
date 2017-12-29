@@ -1,0 +1,2 @@
+<!--pages/bookCats/bookCats.wxml-->
+<text wx:for="{{minorList}}">{{item}}</text>

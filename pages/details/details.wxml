@@ -1,0 +1,16 @@
+<!--pages/details/details.wxml-->
+<view class="container">
+  <view class="background">
+    <view class="top"></view>
+    <view class="bottom"></view>
+  </view>
+  <view class="bookInfo">
+    <image src="http://pic.xiashu.cc/cover/173/173586.jpg"></image>
+    <text class="bookTitle">完美至尊</text>
+    <text class="bookSite">西溪</text>
+    <view class="infoBtn">
+      <button class="startRead">开始阅读</button>
+      <button class="addReader">加入看单</button>
+    </view>
+  </view>
+</view>

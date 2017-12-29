@@ -1,0 +1,49 @@
+<!--pages/bookCity/bookCity.wxml-->
+<view>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">分类</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">排行</view>
+  </scroll-view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+    <swiper-item wx:for="{{[0,1]}}" wx:key="{{index}}">
+      <scroll-view scroll-y="true" class="scoll-h">
+        <view class="Cats">
+          <text class="bookCat">男生</text>
+          <view>
+            <navigator class="catBlock" wx:for="{{majorList.male}}" wx:key="{{index}}"  url="/pages/bookCats/bookCats?gender=male&major={{item.name}}">
+              <text class="catName">{{item.name}}</text>
+              <text class="catCount">{{item.bookCount}}本</text>
+            </navigator>
+          </view>
+        </view>
+        <view class="Cats">
+          <text class="bookCat">女生</text>
+          <view>
+            <navigator url="/pages/bookCats/bookCats?gender=female&major={{item.name}}" class="catBlock" wx:for="{{majorList.female}}" wx:key="{{index}}">
+              <text class="catName">{{item.name}}</text>
+              <text class="catCount">{{item.bookCount}}本</text>
+            </navigator>
+          </view>
+        </view>
+        <view class="Cats">
+          <text class="bookCat">漫画</text>
+          <view>
+            <navigator url="/pages/bookCats/bookCats?gender=picture&major={{item.name}}" class="catBlock" wx:for="{{majorList.picture}}" wx:key="{{index}}">
+              <text class="catName">{{item.name}}</text>
+              <text class="catCount">{{item.bookCount}}本</text>
+            </navigator>
+          </view>
+        </view>
+        <view class="Cats">
+          <text class="bookCat">出版</text>
+          <view>
+            <navigator url="/pages/bookCats/bookCats?gender=press&major={{item.name}}" class="catBlock" wx:for="{{majorList.press}}" wx:key="{{index}}">
+              <text class="catName">{{item.name}}</text>
+              <text class="catCount">{{item.bookCount}}本</text>
+            </navigator>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>
