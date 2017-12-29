@@ -1,2 +1,17 @@
 <!--pages/bookCats/bookCats.wxml-->
-<text wx:for="{{minorList}}">{{item}}</text>
+<view>
+  <view class="type_wrap">
+    <view class="type">
+      <view class="type-item {{currentType === item.id ? 'active' : ''}}" wx:for="{{typeList}}" data-typeid="{{item.id}}" bindtap='switchType'>
+        {{item.name}}
+      </view>
+    </view>
+
+    <scroll-view scroll-x class="minor">
+      <view class="minor-item" wx:for="{{minorList}}" data-typeid="{{item}}">
+        {{item}}
+      </view>
+    </scroll-view>
+  </view>
+
+</view>

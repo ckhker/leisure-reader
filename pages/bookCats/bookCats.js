@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    currentType:  'hot',
     typeList: [
       {
         id: 'hot',
@@ -33,13 +34,18 @@ Page({
 
   getIndexBooks: function (gender,type,major,minor,start){
     wx.request({
-      url: api.getCatsBooks(gender,type,major,minor,start),
+      url: api.classification.getCatsBooks(gender,type,major,minor,start),
       success: res => {
         console.log(res.data)
       }
     })
   },
 
+  switchType: function(e) {
+    this.setData({
+      currentType: e.target.dataset.typeid
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -53,8 +59,9 @@ Page({
         let data = res.data[options.gender];
         for (let i = 0;i < data.length; i++) {
           if (data[i].major === options.major) {
+            data[i].mins.unshift('全部');
             this.setData({
-              minorList: data[i].mins 
+              minorList: data[i].mins
             });
           }
         }

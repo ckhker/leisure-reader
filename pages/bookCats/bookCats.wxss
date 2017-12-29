@@ -1,1 +1,32 @@
 /* pages/bookCats/bookCats.wxss */
+.type_wrap {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.type,.minor {
+  display: flex;
+  padding-left: 20rpx;
+  border-bottom: 1px #eee solid;
+   width: 100%;
+}
+.minor {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.type-item,.minor-item {
+  line-height: 80rpx;
+  font-size: 14px;
+  color: #666;
+  margin-right: 30rpx;
+}
+
+.minor-item {
+  display: inline-block;
+}
+
+.active {
+  color: #cb1c36;
+}

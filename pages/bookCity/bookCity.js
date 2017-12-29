@@ -27,7 +27,7 @@ Page({
   //获取一级分类及数目 
   getCats: function () {
     wx.request({
-      url: api.getCats,
+      url: api.classification.getCats,
       success: (res) => {
         this.setData({
           majorList: res.data
@@ -38,7 +38,7 @@ Page({
   //获取二级分类
   getMinor: function () {
     wx.request({
-      url: api.getMinor,
+      url: api.classification.getMinor,
       success: function (res) {
         wx.setStorage({
           key: 'minor',

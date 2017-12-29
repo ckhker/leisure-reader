@@ -17,7 +17,7 @@
 
 .tab-item {
   display: inline-block;
-  width: 50%;
+  width: 33.3%;
   text-align: center;
 }
 
@@ -34,7 +34,7 @@
   background: #ec304c;
   position: absolute;
   bottom: 0;
-  left: 156rpx;
+  left: 98rpx;
   border-radius: 16rpx;
 }
 
