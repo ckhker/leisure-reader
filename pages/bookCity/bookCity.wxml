@@ -11,7 +11,7 @@
         <view class="Cats">
           <text class="bookCat">男生</text>
           <view>
-            <navigator class="catBlock" wx:for="{{majorList.male}}" wx:key="{{index}}"  url="/pages/bookCats/bookCats?gender=male&major={{item.name}}">
+            <navigator hover-class="none" class="catBlock" wx:for="{{majorList.male}}" wx:key="{{index}}"  url="/pages/bookCats/bookCats?gender=male&major={{item.name}}">
               <text class="catName">{{item.name}}</text>
               <text class="catCount">{{item.bookCount}}本</text>
             </navigator>
@@ -20,7 +20,7 @@
         <view class="Cats">
           <text class="bookCat">女生</text>
           <view>
-            <navigator url="/pages/bookCats/bookCats?gender=female&major={{item.name}}" class="catBlock" wx:for="{{majorList.female}}" wx:key="{{index}}">
+            <navigator hover-class="none" url="/pages/bookCats/bookCats?gender=female&major={{item.name}}" class="catBlock" wx:for="{{majorList.female}}" wx:key="{{index}}">
               <text class="catName">{{item.name}}</text>
               <text class="catCount">{{item.bookCount}}本</text>
             </navigator>
@@ -29,7 +29,7 @@
         <view class="Cats">
           <text class="bookCat">漫画</text>
           <view>
-            <navigator url="/pages/bookCats/bookCats?gender=picture&major={{item.name}}" class="catBlock" wx:for="{{majorList.picture}}" wx:key="{{index}}">
+            <navigator hover-class="none" url="/pages/bookCats/bookCats?gender=picture&major={{item.name}}" class="catBlock" wx:for="{{majorList.picture}}" wx:key="{{index}}">
               <text class="catName">{{item.name}}</text>
               <text class="catCount">{{item.bookCount}}本</text>
             </navigator>
@@ -38,7 +38,7 @@
         <view class="Cats">
           <text class="bookCat">出版</text>
           <view>
-            <navigator url="/pages/bookCats/bookCats?gender=press&major={{item.name}}" class="catBlock" wx:for="{{majorList.press}}" wx:key="{{index}}">
+            <navigator hover-class="none" url="/pages/bookCats/bookCats?gender=press&major={{item.name}}" class="catBlock" wx:for="{{majorList.press}}" wx:key="{{index}}">
               <text class="catName">{{item.name}}</text>
               <text class="catCount">{{item.bookCount}}本</text>
             </navigator>

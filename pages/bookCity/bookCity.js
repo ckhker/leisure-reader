@@ -40,6 +40,7 @@ Page({
     wx.request({
       url: api.classification.getMinor,
       success: function (res) {
+        wx.hideLoading();
         wx.setStorage({
           key: 'minor',
           data: res.data,
@@ -48,6 +49,10 @@ Page({
     });
   },
   onLoad: function () {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     this.getCats();
     this.getMinor();
     //  高度自适应

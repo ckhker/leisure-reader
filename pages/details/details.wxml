@@ -1,16 +1,31 @@
 <!--pages/details/details.wxml-->
-<view class="container">
+<view class="details">
   <view class="background">
     <view class="top"></view>
     <view class="bottom"></view>
   </view>
   <view class="bookInfo">
-    <image src="http://pic.xiashu.cc/cover/173/173586.jpg"></image>
-    <text class="bookTitle">完美至尊</text>
-    <text class="bookSite">西溪</text>
+    <image src="{{STATIC_HOST+bookInfo.cover}}"></image>
+    <text class="bookTitle">{{bookInfo.title}}</text>
+    <text class="bookSite">{{bookInfo.author}}</text>
     <view class="infoBtn">
       <button class="startRead">开始阅读</button>
-      <button class="addReader">加入看单</button>
+      <button class="addReader">加入书架</button>
+    </view>
+  </view>
+  <view class='bookMsg'>
+    <view class='rate'>
+      <view class="rate_item {{book_rate >= item ? 'rate_active' : ''}}" wx:for="{{[1,2,3,4,5]}}">★</view>
+    </view>
+    <view class='lastChapter'>更新至 <text>{{bookInfo.lastChapter}}</text></view>
+    <view class='info_commit'>
+      <view class='tab'>
+        <view class='tab_item info'>详情</view>
+        <view class='tab_item commit active'>评价</view>
+      </view>
+      <scroll-view class='commit_content'>
+       评价
+      </scroll-view>
     </view>
   </view>
 </view>

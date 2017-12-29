@@ -29,7 +29,7 @@
 .tab-item.active:after {
   content: "";
   display: block;
-  height: 8rpx;
+  height: 4rpx;
   width: 52rpx;
   background: #ec304c;
   position: absolute;

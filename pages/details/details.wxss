@@ -1,4 +1,11 @@
 /* pages/details/details.wxss */
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f7f7f7;
+}
+
 .background {
   width: 100%;
   border-bottom: 1px #eee solid;
@@ -72,4 +79,80 @@
   box-shadow: 0 0 5px 0 #aaa;
   color: #999;
   margin-left: 35rpx;
+}
+
+.bookMsg {
+  padding:65rpx 0 759rpx 0;
+  position: relative;
+}
+
+.rate {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.rate_item {
+  font-size: 30px;
+  color: #999;
+  margin-right: 15rpx;
+}
+
+.rate_active {
+  color: #ec304c;
+}
+
+.lastChapter {
+  font-size: 13px;
+  color: #333;
+  text-align: center;
+  width: 100%;
+}
+
+.lastChapter text {
+  color:#40E0D0;
+}
+
+.info_commit {
+  position: absolute;
+  bottom: 30rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  width: 680rpx;
+}
+.info_commit .tab {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  line-height: 80rpx;
+  border-bottom: 1px #eee solid;
+}
+
+.info_commit .tab_item {
+  width: 50%;
+  text-align: center;
+  font-size: 15px;
+  color: #666;
+}
+
+.info_commit .tab_item.active {
+  color: #ec304c;
+  position: relative;
+}
+
+.info_commit .tab_item.active:after {
+  content: "";
+  display: block;
+  height: 4rpx;
+  width: 52rpx;
+  background: #ec304c;
+  position: absolute;
+  bottom: 0;
+  left: 144rpx;
+  border-radius: 16rpx;
+}
+
+.commit_content {
+  height: 605rpx;
 }

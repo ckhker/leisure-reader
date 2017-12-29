@@ -27,12 +27,6 @@
         "selectedIconPath": "img/selectedBook.png",
         "pagePath": "pages/bookCity/bookCity",
         "text": "书城"
-      },
-      {
-        "iconPath": "img/mine.png",
-        "selectedIconPath": "img/selectedMine.png",
-        "pagePath": "pages/details/details",
-        "text": "我的"
       }
     ]
   }
