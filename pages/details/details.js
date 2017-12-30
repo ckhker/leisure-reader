@@ -9,7 +9,17 @@ Page({
   data: {
     STATIC_HOST: '',
     bookInfo: {},
-    book_rate: 2 //书籍评分
+    book_rate: 0, //书籍评分
+    showInfoContent: true,
+    allRecommendBooks: [],//全部推荐书籍
+    showRecommendBooks: [], //随机展示的三本推荐书籍
+    shortReviews: {}
+  },
+
+  showTab:function (event) {
+    this.setData({
+      showInfoContent: !!parseInt(event.target.dataset.id)
+    });
   },
 
   getBookInfo: function (book_id) {
@@ -17,13 +27,57 @@ Page({
       url: api.book.bookInfo(book_id),
       success: res => {
         wx.hideLoading();
+        let score = Math.floor(res.data.rating.score/2);
         this.setData({
-          bookInfo: res.data
+          bookInfo: res.data,
+          book_rate: score
         });
       }
     })
   },
 
+  getRelatedRecommendedBooks: function (book_id) {
+    wx.request({
+      url: api.book.relatedRecommendedBooks(book_id),
+      success: res => {
+        this.setData({
+          allRecommendBooks: res.data.books
+        });
+        this.randomRecommendBooks();
+      }
+    })
+  },
+
+  randomRecommendBooks: function () {  //在所有推荐书籍中随机选出三本展示
+    this.setData({
+      showRecommendBooks: []
+    });
+    let recommendBooksLen = this.data.allRecommendBooks.length;
+    let randomIndex;
+    for (let i = 0; i < 3; i++) {
+      let newRandom = Math.floor(Math.random() * recommendBooksLen);
+      if (newRandom === randomIndex) {
+        i--;
+        break;
+      }
+      randomIndex = newRandom;
+      this.data.showRecommendBooks.push(this.data.allRecommendBooks[randomIndex])
+    }
+    this.setData({
+      showRecommendBooks: this.data.showRecommendBooks
+    });
+  },
+
+  getBookShortReviews(book_id) {
+    wx.request({
+      url: api.comment.shortReviews(book_id),
+      success: res => {
+        this.setData({
+          shortReviews: res.data
+        });
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -36,6 +90,8 @@ Page({
       STATIC_HOST: api.STATIC_HOST
     });
     this.getBookInfo(options.book_id);
+    this.getRelatedRecommendedBooks(options.book_id);
+    this.getBookShortReviews(options.book_id);
   },
 
   /**

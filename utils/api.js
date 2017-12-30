@@ -33,13 +33,13 @@ module.exports = {
     bookSources: function (book_id) {  // @param book_id 书籍id
       return `${API_HOST}/atoc?view=summary&book=${book_id}`
     },
-    // 书籍章节内容   
+    // 书籍章节
     bookChapters: function (id) {  // @param id 书源id
       return `${API_HOST}/atoc/${id}?view=chapters`
     },
     // 章节内容
     chapterContent: function (link) {  // @param link 章节link
-      return `http://chapter2.zhuishushenqi.com/chapter/${encodeURIComponent(link)}`
+      return `https://chapter2.zhuishushenqi.com/chapter/${encodeURIComponent(link)}`
     },
     // 书籍搜索 可以搜索作者但是不精确
     bookSearch: function (content) { //@param content 搜索内容
@@ -60,8 +60,8 @@ module.exports = {
       return `${API_HOST}/post/by-book?book=${book_id}`
     },
     // 短评
-    shortReviews: function (book_id) {  // @param book_id 书籍id
-      return `${API_HOST}/post/short-review?book=${book_id}`
+    shortReviews: function (book_id) {  // @param book_id 书籍id    完整接口 ?book=5816b415b06d1d32157790b1&limit=20&total=true&start=0&sortType=hottest
+      return `${API_HOST}/post/short-review?book=${book_id}&total=true&sortType=newest`
     },
     //长评
     bookReviews: function (book_id) {  // @param book_id 书籍id

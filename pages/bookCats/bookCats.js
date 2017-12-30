@@ -42,7 +42,7 @@ Page({
     start: 0, //分页起始
     loadMore: true, //防止多次加载
     loadedAll: false, //已加载全部
-    scrollTop: 0
+    scrollTop: 0  //scroll-view 滚动条位置
   },
 
   getIndexBooks: function (gender, type, major, minor, start) {
@@ -54,14 +54,14 @@ Page({
           this.setData({
             loadedAll: true
           })
-        }else {
+        } else {
           if (start !== 0) {
             this.data.books.books = this.data.books.books.concat(res.data.books);
             this.setData({
               books: this.data.books,
               loadMore: true
             });
-          }else {
+          } else {
             this.setData({
               books: res.data,
               start: 0,
@@ -73,7 +73,7 @@ Page({
     })
   },
 
-  loadMore: function() {
+  loadMore: function () {
     if (this.data.loadMore) {
       wx.showLoading({
         title: '加载中',
@@ -98,7 +98,7 @@ Page({
       currentType: e.target.dataset.typeid
     });
     let minor = this.data.currentMinor === '全部' ? '' : this.data.currentMinor;
-    this.getIndexBooks(this.data.gender, this.data.currentType, this.data.major, minor,0);
+    this.getIndexBooks(this.data.gender, this.data.currentType, this.data.major, minor, 0);
   },
 
   switchMinor: function (e) {
@@ -111,7 +111,7 @@ Page({
     });
     console.log(this.data.currentMinor)
     let minor = this.data.currentMinor === '全部' ? '' : this.data.currentMinor;
-    this.getIndexBooks(this.data.gender, this.data.currentType, this.data.major, minor,0);
+    this.getIndexBooks(this.data.gender, this.data.currentType, this.data.major, minor, 0);
   },
   /**
    * 生命周期函数--监听页面加载

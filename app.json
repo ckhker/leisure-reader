@@ -3,7 +3,9 @@
     "pages/bookshelf/bookshelf",
     "pages/details/details",
     "pages/bookCity/bookCity",
-    "pages/bookCats/bookCats"
+    "pages/bookCats/bookCats",
+    "pages/reader/reader",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -27,6 +29,12 @@
         "selectedIconPath": "img/selectedBook.png",
         "pagePath": "pages/bookCity/bookCity",
         "text": "书城"
+      },
+      {
+        "iconPath": "img/search.png",
+        "selectedIconPath": "img/selectedSearch.png",
+        "pagePath": "pages/search/search",
+        "text": "搜索"
       }
     ]
   }
