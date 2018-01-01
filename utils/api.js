@@ -33,17 +33,23 @@ module.exports = {
     bookSources: function (book_id) {  // @param book_id 书籍id
       return `${API_HOST}/atoc?view=summary&book=${book_id}`
     },
-    // 书籍章节
+    // 书籍章节 根据书源id
     bookChapters: function (id) {  // @param id 书源id
       return `${API_HOST}/atoc/${id}?view=chapters`
+    },
+    // 书籍章节 根据书id
+    bookChaptersBookId: function (book_id) {
+      return `${API_HOST}/mix-atoc/${book_id}?view=chapters`
     },
     // 章节内容
     chapterContent: function (link) {  // @param link 章节link
       return `https://chapter2.zhuishushenqi.com/chapter/${encodeURIComponent(link)}`
     },
-    // 书籍搜索 可以搜索作者但是不精确
+    //搜索热词
+    hotWord: API_HOST + '/book/hot-word',
+    // 书籍搜索 (分类，书名，作者名)
     bookSearch: function (content) { //@param content 搜索内容
-      return `${API_HOST}/book/fuzzy-search?query=${content}`
+      return `${API_HOST}/book/fuzzy-search?start=0&limit=50&v=1&query=${content}`
     }
   },
   rank: {

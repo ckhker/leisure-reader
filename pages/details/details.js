@@ -13,13 +13,43 @@ Page({
     showInfoContent: true,
     allRecommendBooks: [],//全部推荐书籍
     showRecommendBooks: [], //随机展示的三本推荐书籍
-    shortReviews: {}
+    shortReviews: {},
+    addedShelf: false
   },
 
-  showTab:function (event) {
+  showTab: function (event) {
     this.setData({
       showInfoContent: !!parseInt(event.target.dataset.id)
     });
+  },
+
+  addShelf: function () {
+    if (this.data.addedShelf) {
+      return
+    }
+    let shelfData = {
+      bookInfo: {
+        id: this.data.bookInfo._id,
+        title: this.data.bookInfo.title,
+        cover: this.data.bookInfo.cover,
+        laterChapter: this.data.bookInfo.chaptersCount
+      },
+      readNum: 1,
+      laterScrollTop: 0 //上次滑动的距离
+    };
+    wx.getStorage({
+      key: 'bookShelfData',
+      success: res => {
+        res.data.unshift(shelfData);
+        wx.setStorage({
+          key: 'bookShelfData',
+          data: res.data,
+        });
+        this.setData({
+          addedShelf: true
+        });
+      },
+    })
   },
 
   getBookInfo: function (book_id) {
@@ -27,7 +57,7 @@ Page({
       url: api.book.bookInfo(book_id),
       success: res => {
         wx.hideLoading();
-        let score = Math.floor(res.data.rating.score/2);
+        let score = Math.floor(res.data.rating.score / 2);
         this.setData({
           bookInfo: res.data,
           book_rate: score
@@ -86,6 +116,19 @@ Page({
       title: '加载中',
       mask: true
     });
+    wx.getStorage({  //检查此书是否加入书架
+      key: 'bookShelfData',
+      success: res => {
+        res.data.forEach(item => {
+          if (item.bookInfo.id === options.book_id) {
+            this.setData({
+              addedShelf: true
+            });
+            return;
+          }
+        });
+      },
+    })
     this.setData({
       STATIC_HOST: api.STATIC_HOST
     });

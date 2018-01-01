@@ -1,7 +1,7 @@
 // pages/reader/reader.js
 const api = require('../../utils/api.js')
+const WxParse = require('../wxParse/wxParse.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -28,7 +28,7 @@ Page({
     isHuyan: false
   },
 
-  toggleDark: function() {
+  toggleDark: function () {
     this.setData({
       isDark: !this.data.isDark
     });
@@ -43,7 +43,7 @@ Page({
         isHuyan: false,
         readerCss: this.data.readerCss
       });
-    }else {
+    } else {
       wx.setNavigationBarColor({
         frontColor: '#ffffff',
         backgroundColor: '#cb1c36'
@@ -86,7 +86,7 @@ Page({
     }
   },
 
-  incSize: function() {
+  incSize: function () {
     if (this.data.readerCss.titleSize === 30) {
       return
     }
@@ -143,12 +143,23 @@ Page({
       url: api.book.chapterContent(link),
       success: res => {
         wx.hideLoading();
+        if (res.data.chapter.cpContent) {
+          let bodyArray = res.data.chapter.cpContent.split(/\n/).map((item) => {  //给每个段落加开头空格 ,方案改为修改wxParse.wxss
+            return item
+          });
+          res.data.chapter.cpContent = bodyArray.join('<br>');
+        }
+        let bodyArray = res.data.chapter.body.split(/\n/).map((item) => {
+          return item
+        });
+        res.data.chapter.body = bodyArray.join('<br>');
         this.setData({
           showPage: true,
           showChapter: false,  //关闭目录
           scrollTop: 0,
           indexChapterContent: res.data
         });
+        WxParse.wxParse('article', 'html', this.data.indexChapterContent.chapter.cpContent ? this.data.indexChapterContent.chapter.cpContent : this.data.indexChapterContent.chapter.body, this);
       }
     })
   },
@@ -181,31 +192,30 @@ Page({
     this.setData({
       indexPage: this.data.indexPage + 1
     });
-    console.log(this.data.indexPage);
     if (this.data.bookChapters.chapters[this.data.indexPage]) {
       this.getChapterContent(this.data.bookChapters.chapters[this.data.indexPage].link);
     }
   },
 
   openMenu: function (event) {
-    let xMid = this.data.clientWidth/2;
-    let yMid = this.data.clientHeight/2;
+    let xMid = this.data.clientWidth / 2;
+    let yMid = this.data.clientHeight / 2;
     let x = event.detail.x;
     let y = event.detail.y;
-    if ((x > xMid - 100 && x < xMid + 100) && (y<yMid+100&&y>yMid-100 )) {
+    if ((x > xMid - 100 && x < xMid + 100) && (y < yMid + 100 && y > yMid - 100)) {
       this.setData({
         showMenu: !this.data.showMenu
       });
     }
   },
 
-  showChapter: function() {
+  showChapter: function () {
     this.setData({
       showChapter: !this.data.showChapter
     });
   },
 
-  pickChapter: function(event) {
+  pickChapter: function (event) {
     this.setData({
       indexPage: event.target.dataset.indexpage
     });
@@ -216,6 +226,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({  //上次读到哪
+      indexPage: parseInt(options.laterChapter)-1
+    });
     wx.setNavigationBarTitle({
       title: options.book_title,
     });
@@ -233,61 +246,13 @@ Page({
       }
     });
     wx.showLoading({
-      title: '中部呼出菜单',
+      title: '点击呼出菜单',
       mask: true
     });
-    setTimeout( () => {
+
+    setTimeout(() => {
       wx.hideLoading()
       this.getBookSources(options.book_id);
-    }, 3000);
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    }, 2000);
   }
 })

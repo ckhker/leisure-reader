@@ -5,12 +5,12 @@
     <view class="bottom"></view>
   </view>
   <view class="bookInfo">
-    <image src="{{STATIC_HOST+bookInfo.cover}}"></image>
+    <image src="{{STATIC_HOST}}{{bookInfo.cover}}"></image>
     <text class="bookTitle">{{bookInfo.title}}</text>
     <text class="bookSite">{{bookInfo.author}}</text>
     <view class="infoBtn">
       <navigator hover-class="none" url='/pages/reader/reader?book_id={{bookInfo._id}}&book_title={{bookInfo.title}}' class="startRead">开始阅读</navigator>
-      <view class="addReader">加入书架</view>
+      <view bindtap='addShelf' class="addReader">{{addedShelf ? '已加入书架' : '加入书架'}}</view>
     </view>
   </view>
   <view class='bookMsg'>
@@ -38,7 +38,7 @@
           </view>
           <view class='re_books'>
             <navigator wx:key="{{index}}" hover-class="none" class='re_bookItem' wx:for="{{showRecommendBooks}}" url='/pages/details/details?book_id={{item._id}}'>
-              <image src="{{STATIC_HOST+item.cover}}"></image>
+              <image src="{{STATIC_HOST}}{{item.cover}}"></image>
               <view class='re_bookTitle'>{{item.title}}</view>
             </navigator>
           </view>

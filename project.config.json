@@ -26,8 +26,8 @@
 				{
 					"id": 0,
 					"name": "debug",
-					"pathName": "pages/reader/reader",
-					"query": "book_id=5816b415b06d1d32157790b1&book_title=圣墟"
+					"pathName": "pages/search/search",
+					"query": "book_id=5816b415b06d1d32157790b1"
 				}
 			]
 		}

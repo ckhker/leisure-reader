@@ -1,11 +1,13 @@
 <!--pages/reader/reader.wxml-->
+<import src="../wxParse/wxParse.wxml"/>
+
 <view wx:if="{{showPage}}" class='reader' style='background: {{readerCss.backgroundColor}}'>
   <scroll-view bindtap='openMenu' scroll-top='{{scrollTop}}' enable-back-to-top scroll-y='true' style='height:{{winHeight}}rpx' class='read_container'>
     <view class='chapter_title' style='font-size: {{readerCss.titleSize}}px;color: {{readerCss.color}}'>
-      {{indexChapterContent.chapter.title}}
+      {{bookChapters.chapters[indexPage].title}}
     </view>
     <view class='chapter_content' style='font-size: {{readerCss.contentSize}}px;color: {{readerCss.color}};line-height:{{readerCss.lineHeight}}rpx'>
-       {{indexChapterContent.chapter.cpContent ? indexChapterContent.chapter.cpContent : indexChapterContent.chapter.body}}
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
     </view> 
     <view class='chapterLink'>
       <view bindtap='goPrev' class="prev">上一章</view>

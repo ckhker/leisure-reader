@@ -83,7 +83,7 @@
 }
 
 .bookMsg {
-  padding: 65rpx 0 786rpx 0;
+  padding: 65rpx 0 900rpx 0;
   position: relative;
 }
 
@@ -116,7 +116,7 @@
 
 .info_commit {
   position: absolute;
-  bottom: 30rpx;
+  bottom: 75rpx;
   left: 50%;
   transform: translateX(-50%);
   background-color: #fff;
@@ -156,7 +156,7 @@
 }
 
 .commit_content, .info_content {
-  height: 630rpx;
+  height: 700rpx;
 }
 
 .info_desc {
