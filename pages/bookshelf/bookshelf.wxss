@@ -23,7 +23,7 @@
 }
 
 .userinfo-nickname {
-  color: #333;
+  color: #222;
   font-size: 18px;
   display: block;
   line-height: 80rpx;

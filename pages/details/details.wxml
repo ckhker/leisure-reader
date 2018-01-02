@@ -46,7 +46,7 @@
       </scroll-view>
       <scroll-view scroll-y='true' wx:else class='commit_content'>
         <view class='review_item' wx:for="{{shortReviews.docs}}" wx:key="{{index}}">
-          <image src="{{STATIC_HOST+item.author.avatar}}"></image>
+          <image src="{{STATIC_HOST}}{{item.author.avatar}}"></image>
           <view class='review_info'>
             <view class='review_site'>{{item.author.nickname}}</view>
             <view class='review_content'>{{item.content}}</view>

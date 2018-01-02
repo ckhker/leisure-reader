@@ -2,6 +2,21 @@
 
 .searchContainer {
   padding-top: 30rpx;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50rpx;
+  left: 195rpx;
+  z-index: 20;
+}
+
+.clearIcon {
+  position: absolute;
+  top: 45rpx;
+  right: 45rpx;
+  z-index: 20;
 }
 
 .searchContainer input {

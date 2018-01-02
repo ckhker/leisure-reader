@@ -1,5 +1,7 @@
 <!--pages/search/search.wxml-->
 <view class='searchContainer'>
+  <icon wx:if="{{!searchValue}}" class='searchIcon' type='search' color='#999' size='14'></icon>
+  <icon bindtap='clearInput' wx:else class='clearIcon' type='clear' color='#999' size='20'></icon>
   <input type='text' value="{{searchValue}}" confirm-type='search' bindinput='searchInput' placeholder-class='placerStyle' bindconfirm='search' placeholder='输入书名或作者名'></input>
   <view wx:if="{{!showSearchContent}}">
     <view class='hotWord'>

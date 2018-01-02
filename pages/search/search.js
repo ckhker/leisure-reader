@@ -57,12 +57,22 @@ Page({
     this.search(event.target.dataset.word);
   },
 
-  searchInput: function (event) {  //清空搜索栏关闭搜索容器
+  searchInput: function (event) {  //手动清空搜索栏关闭搜索容器
+    this.setData({
+      searchValue: event.detail.value
+    });
     if (event.detail.value.length === 0) {
       this.setData({
         showSearchContent: false
       });
     }
+  },
+
+  clearInput: function () { //清空搜索栏关闭搜索容器
+    this.setData({
+      searchValue: '',
+      showSearchContent: false
+    });
   },
 
   search: function (word) {

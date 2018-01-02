@@ -226,9 +226,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({  //上次读到哪
-      indexPage: parseInt(options.laterChapter)-1
-    });
+    let bookShelfData = wx.getStorageSync('bookShelfData');  //利用缓存实现阅读记录和书架
+    if (bookShelfData.length !== 0) {
+      for (let i = 0; i < bookShelfData.length; i++) {
+        if (bookShelfData[i].bookInfo.id === options.book_id) {
+          this.setData({  //上次读到哪
+            indexPage: bookShelfData[i].readNum - 1
+          });
+          break;
+        }
+      }
+    }
     wx.setNavigationBarTitle({
       title: options.book_title,
     });
