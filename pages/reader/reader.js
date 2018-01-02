@@ -10,6 +10,7 @@ Page({
     clientWidth: "",
     clientHeight: "",
     winHeight: "",//窗口高度
+    book_id: '',
     scrollTop: 0,
     bookSources: [],
     bookChapters: {},
@@ -156,10 +157,31 @@ Page({
         this.setData({
           showPage: true,
           showChapter: false,  //关闭目录
-          scrollTop: 0,
           indexChapterContent: res.data
         });
+        //存储当前读到哪一章
+        wx.getStorage({
+          key: 'bookShelfData',
+          success: res => {
+            let data = res.data;
+            for (let i = 0; i < data.length; i++) {
+              if (this.data.book_id === data[i].bookInfo.id) {
+                data[i].readNum = this.data.indexPage + 1;
+                data[i].laterScrollTop = this.data.scrollTop
+                wx.setStorage({
+                  key: 'bookShelfData',
+                  data: data,
+                })
+              }
+            }
+          },
+        });
+        //使用Wxparse格式化小说内容
         WxParse.wxParse('article', 'html', this.data.indexChapterContent.chapter.cpContent ? this.data.indexChapterContent.chapter.cpContent : this.data.indexChapterContent.chapter.body, this);
+        //等到渲染页面后调节scrollTop
+        this.setData({
+          scrollTop: this.data.scrollTop
+        })
       }
     })
   },
@@ -173,7 +195,8 @@ Page({
       });
     }
     this.setData({
-      indexPage: this.data.indexPage - 1
+      indexPage: this.data.indexPage - 1,
+      scrollTop: 0
     });
     if (this.data.bookChapters.chapters[this.data.indexPage]) {
       this.getChapterContent(this.data.bookChapters.chapters[this.data.indexPage].link);
@@ -190,14 +213,15 @@ Page({
       return;
     }
     this.setData({
-      indexPage: this.data.indexPage + 1
+      indexPage: this.data.indexPage + 1,
+      scrollTop: 0
     });
     if (this.data.bookChapters.chapters[this.data.indexPage]) {
       this.getChapterContent(this.data.bookChapters.chapters[this.data.indexPage].link);
     }
   },
-
-  openMenu: function (event) {
+  //点击中央打开菜单
+  openMenu: function (event) { 
     let xMid = this.data.clientWidth / 2;
     let yMid = this.data.clientHeight / 2;
     let x = event.detail.x;
@@ -209,6 +233,28 @@ Page({
     }
   },
 
+  getScrollTop: function (event) {
+    // this.setData({
+    //   scrollTop: event.detail.scrollTop
+    // });
+    //存储读到章节的什么位置
+    wx.getStorage({
+      key: 'bookShelfData',
+      success: res => {
+        let data = res.data;
+        for (let i = 0; i < data.length; i++) {
+          if (this.data.book_id === data[i].bookInfo.id) {
+            data[i].laterScrollTop = this.data.scrollTop;
+            wx.setStorage({
+              key: 'bookShelfData',
+              data: data,
+            })
+          }
+        }
+      },
+    });
+  },
+
   showChapter: function () {
     this.setData({
       showChapter: !this.data.showChapter
@@ -217,7 +263,8 @@ Page({
 
   pickChapter: function (event) {
     this.setData({
-      indexPage: event.target.dataset.indexpage
+      indexPage: event.target.dataset.indexpage,
+      scrollTop: 0
     });
     this.getChapterContent(event.target.dataset.link);
   },
@@ -226,12 +273,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      book_id: options.book_id
+    });
+
     let bookShelfData = wx.getStorageSync('bookShelfData');  //利用缓存实现阅读记录和书架
     if (bookShelfData.length !== 0) {
       for (let i = 0; i < bookShelfData.length; i++) {
         if (bookShelfData[i].bookInfo.id === options.book_id) {
           this.setData({  //上次读到哪
-            indexPage: bookShelfData[i].readNum - 1
+            indexPage: bookShelfData[i].readNum - 1,
+            scrollTop: bookShelfData[i].laterScrollTop
           });
           break;
         }

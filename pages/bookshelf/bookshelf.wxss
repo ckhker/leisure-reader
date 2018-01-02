@@ -43,15 +43,15 @@
 .help {
   line-height: 60rpx;
   font-size: 15px;
-  color: #999;
+  color: #666;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 20rpx;
-  border: 1px #eee solid;
+  border: 1px #999 solid;
   border-radius: 20%;
   text-align: center;
-  width: 95rpx;
+  width: 105rpx;
 }
 
 .bookshelfContainer {

@@ -2,7 +2,7 @@
 <import src="../wxParse/wxParse.wxml"/>
 
 <view wx:if="{{showPage}}" class='reader' style='background: {{readerCss.backgroundColor}}'>
-  <scroll-view bindtap='openMenu' scroll-top='{{scrollTop}}' enable-back-to-top scroll-y='true' style='height:{{winHeight}}rpx' class='read_container'>
+  <scroll-view bindtap='openMenu' scroll-with-animation='true' scroll-top='{{scrollTop}}' bindscroll='getScrollTop' enable-back-to-top scroll-y='true' style='height:{{winHeight}}rpx' class='read_container'>
     <view class='chapter_title' style='font-size: {{readerCss.titleSize}}px;color: {{readerCss.color}}'>
       {{bookChapters.chapters[indexPage].title}}
     </view>
