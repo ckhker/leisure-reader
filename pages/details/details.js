@@ -32,7 +32,7 @@ Page({
         id: this.data.bookInfo._id,
         title: this.data.bookInfo.title,
         cover: this.data.bookInfo.cover,
-        laterChapter: this.data.bookInfo.chaptersCount
+        laterChapter: this.data.bookInfo.updated
       },
       readNum: 1,
       laterScrollTop: 0 //上次滑动的距离

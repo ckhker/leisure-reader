@@ -6,7 +6,8 @@
     "pages/bookCats/bookCats",
     "pages/reader/reader",
     "pages/search/search",
-    "pages/rank/rank"
+    "pages/rank/rank",
+    "pages/help/help"
   ],
   "window": {
     "backgroundTextStyle": "light",

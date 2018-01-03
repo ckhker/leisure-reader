@@ -36,7 +36,7 @@ Page({
     currentMinor: '全部',
     showMinor: true,
     minorList: [],
-    bookListTop: 180, //scroll-view的相对top
+    bookListTop: 164, //scroll-view的相对top
     books: {},
     tagColors: ['#FF8C00', '#00CED1', '#FF4500'],
     start: 0, //分页起始
@@ -146,7 +146,7 @@ Page({
             if (data[i].mins.length === 1) {
               this.setData({
                 showMinor: false,
-                bookListTop: 100,
+                bookListTop: 82,
                 winHeight: this.data.winHeight + 80
               });
             }
@@ -163,54 +163,5 @@ Page({
       major: options.major
     });
     this.getIndexBooks(options.gender, 'hot', options.major, '', 0);
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

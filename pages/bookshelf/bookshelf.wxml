@@ -6,7 +6,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       <text class='booksNum'>已收藏<text>{{bookShelfCount}}</text>本书</text>
     </view>
-    <navigator class='help'>帮助</navigator>
+    <navigator hover-class="none" class='help'>帮助</navigator>
   </view>
   <view class='bookshelfContainer'>
     <view class='operation'>
@@ -17,7 +17,7 @@
       主人还没收藏书籍哦，请去书城收藏吧！
     </view>
     <navigator  url='/pages/reader/reader?book_id={{item.bookInfo.id}}&book_title={{item.bookInfo.title}}' hover-class="none" class='bookshelf_item {{(index + 1)%3 === 0 ? "noMargin" : ""}}' wx:for="{{bookShelfData}}" wx:key="{{index}}">
-      <view class='hasUpdate'>有更新</view>
+      <view wx:if='{{hasUpdate[index]}}' class='hasUpdate'>有更新</view>
       <image src="{{STATIC_HOST}}{{item.bookInfo.cover}}"></image>
       <text class='name'>{{item.bookInfo.title}}</text>
       <view class='readNum'>读到第{{item.readNum}}章</view>

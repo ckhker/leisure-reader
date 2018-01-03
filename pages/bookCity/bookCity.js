@@ -6,7 +6,6 @@ Page({
     STATIC_HOST: '',
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
-    scrollLeft: 0, //tab标题的滚动条位置
     majorList: {},
     rankCategory: {},
     openMaleOther: false, //控制列表伸缩
@@ -107,7 +106,7 @@ Page({
         var clientHeight = res.windowHeight,
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth;
-        var calc = clientHeight * rpxR;
+        var calc = clientHeight * rpxR - 80;
         this.setData({
           winHeight: calc
         });

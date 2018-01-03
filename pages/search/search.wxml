@@ -26,7 +26,7 @@
 
   <scroll-view wx:if="{{showSearchContent}}" enable-back-to-top class='bookList' scroll-top="{{scrollTop}}"  scroll-y="true" style="height:{{winHeight}}rpx;">
     <navigator hover-class="none" url='/pages/details/details?book_id={{book._id}}' class='book_item' wx:for="{{searchRes.books}}" wx:key="{{index}}" wx:for-item="book">
-      <image src='{{STATIC_HOST+book.cover}}' lazy-load='true'></image>
+      <image src='{{STATIC_HOST}}{{book.cover}}' lazy-load='true'></image>
       <view class='book_info'>
         <text class='book_title'>{{book.title}}</text>
         <text class='book_site'>{{book.author}}</text>

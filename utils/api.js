@@ -29,7 +29,7 @@ module.exports = {
     authorBooks: function (author) {   // @param author 作者名
       return `${API_HOST}/book/accurate-search?author=${author}`
     },
-    // 书源  注意：一个优质书源为收费源
+    // 书源  注意：第一个优质书源为收费源
     bookSources: function (book_id) {  // @param book_id 书籍id
       return `${API_HOST}/atoc?view=summary&book=${book_id}`
     },
