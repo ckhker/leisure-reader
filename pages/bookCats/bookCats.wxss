@@ -15,7 +15,7 @@
 .type,.minor {
   padding-left: 20rpx;
   border-bottom: 1px #eee solid;
-   width: 100%;
+  width: 100%;
 }
 
 .type {

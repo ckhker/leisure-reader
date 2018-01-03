@@ -176,8 +176,8 @@ Page({
             }
           },
         });
-        //使用Wxparse格式化小说内容
-        WxParse.wxParse('article', 'html', this.data.indexChapterContent.chapter.cpContent ? this.data.indexChapterContent.chapter.cpContent : this.data.indexChapterContent.chapter.body, this);
+        //使用Wxparse格式化小说内容   对收费的显示文字   后期换接口处理
+        WxParse.wxParse('article', 'html', this.data.indexChapterContent.chapter.cpContent ? '小轻还没有给主人搬到此书，去看看别的吧' : this.data.indexChapterContent.chapter.body, this);
         //等到渲染页面后调节scrollTop
         this.setData({
           scrollTop: this.data.scrollTop
@@ -221,7 +221,7 @@ Page({
     }
   },
   //点击中央打开菜单
-  openMenu: function (event) { 
+  openMenu: function (event) {
     let xMid = this.data.clientWidth / 2;
     let yMid = this.data.clientHeight / 2;
     let x = event.detail.x;
@@ -233,7 +233,8 @@ Page({
     }
   },
 
-  getScrollTop: function (event) {
+  getScrollTop: function (event) {  //设置读取到文章的具体什么位置
+
     // this.setData({
     //   scrollTop: event.detail.scrollTop
     // });
@@ -244,7 +245,7 @@ Page({
         let data = res.data;
         for (let i = 0; i < data.length; i++) {
           if (this.data.book_id === data[i].bookInfo.id) {
-            data[i].laterScrollTop = this.data.scrollTop;
+            data[i].laterScrollTop = event.detail.scrollTop;
             wx.setStorage({
               key: 'bookShelfData',
               data: data,
@@ -289,9 +290,11 @@ Page({
         }
       }
     }
-    wx.setNavigationBarTitle({
+
+    wx.setNavigationBarTitle({   //设置标题
       title: options.book_title,
     });
+
     wx.getSystemInfo({
       success: (res) => {
         var clientHeight = res.windowHeight,
@@ -305,11 +308,11 @@ Page({
         });
       }
     });
+
     wx.showLoading({
       title: '点击呼出菜单',
       mask: true
     });
-
     setTimeout(() => {
       wx.hideLoading()
       this.getBookSources(options.book_id);

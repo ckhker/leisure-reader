@@ -5,7 +5,8 @@
     "pages/bookCity/bookCity",
     "pages/bookCats/bookCats",
     "pages/reader/reader",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/rank/rank"
   ],
   "window": {
     "backgroundTextStyle": "light",

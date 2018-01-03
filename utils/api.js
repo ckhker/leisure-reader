@@ -7,7 +7,7 @@ module.exports = {
     getCats: API_HOST + '/cats/lv2/statistics',
     //获取小类
     getMinor: API_HOST + '/cats/lv2',
-    //获取分类书籍  @param gender 性别排行（male）type 排行类型（host）major 大类 minor 小类  start 分页开始 
+    //获取分类书籍  @param gender 性别排行（male）type 排行类型（hot）major 大类 minor 小类  start 分页开始 
     getCatsBooks: function (gender, type, major, minor, start) {
       if (minor) {
         return `${API_HOST}/book/by-categories?gender=${gender}&type=${type}&major=${major}&minor=${minor}&start=${start}&limit=20`
@@ -54,7 +54,7 @@ module.exports = {
   },
   rank: {
     // 排名分类
-    rankCategory: 'http://api.zhuishushenqi.com/ranking/gender',
+    rankCategory: `${API_HOST}/ranking/gender`,
     // 排名详情
     rankInfo: function (rank_id) { //@param rank_id 分类ID
       return `${API_HOST}/ranking/${rank_id}`
@@ -75,7 +75,7 @@ module.exports = {
     },
   },
   bookList: {
-    lists: 'http://api.zhuishushenqi.com/book-list',
+    lists: `${API_HOST}/book-list`,
     detail: function (id) {  // @param id 书单id
       return `${API_HOST}/book-list/${book_id}`
     }

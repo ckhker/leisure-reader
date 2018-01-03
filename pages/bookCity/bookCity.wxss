@@ -42,15 +42,15 @@
   margin-top: 80rpx;
 }
 
-.scoll-h {
+.scroll-h {
   height: 100%;
 }
 
-.Cats {
+.Cats, .rank_item {
   width: 100%;
 }
 
-.bookCat {
+.bookCat, .bookRank {
   color: #999;
   font-size: 15px;
   line-height: 100rpx;
@@ -63,6 +63,44 @@
   justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.rank_item {
+  overflow: hidden;
+  transition: .6s all ease-in-out;
+}
+
+.rank_item .rank_item_item {
+  width: 95%;
+  border-bottom: 1px #eee solid;
+  height: 90rpx;
+  line-height: 90rpx;
+  display: flex;
+  flex-direction: row;
+  margin-left: 5%;
+}
+
+.rank_item_item .rank_icon {
+  width: 55rpx;
+  height: 55rpx;
+  position: relative;
+  top: 18rpx;
+}
+
+.rank_item_item view {
+  font-size: 15px;
+  color: #333;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-left: 20rpx;
+}
+
+.rank_item_item .pulldown_icon {
+  width: 35rpx;
+  height: 35rpx;
+  position: relative;
+  top: 32rpx;
+  left: 345rpx;
 }
 
 .catBlock {

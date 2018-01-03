@@ -21,12 +21,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "debug",
-					"pathName": "pages/search/search",
+					"pathName": "pages/bookCity/bookCity",
 					"query": "book_id=5816b415b06d1d32157790b1"
 				}
 			]
