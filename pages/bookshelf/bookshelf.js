@@ -7,9 +7,34 @@ Page({
     STATIC_HOST: '',
     userInfo: {},
     bookShelfData: [],
-    bookShelfCount: 0,
-    hasUpdate: []
+    hasUpdate: [],
+    isEdit: false
   },
+
+  edit: function () {
+    this.setData({
+      isEdit: !this.data.isEdit
+    });
+  },
+
+  delete: function (e) {
+    let i = e.target.dataset.id;
+    this.data.bookShelfData.splice(i,1);
+    wx.getStorage({
+      key: 'bookShelfData',
+      success: function(res) {
+        res.data.splice(i, 1);
+        wx.setStorage({
+          key: 'bookShelfData',
+          data: res.data,
+        })
+      },
+    })
+    this.setData({
+      bookShelfData: this.data.bookShelfData
+    });
+  },
+
   getlasterChapter: function () {
     for (let i = 0; i < this.data.bookShelfData.length; i++) {
       wx.request({
@@ -39,8 +64,7 @@ Page({
       success: res => {
         this.setData({
           STATIC_HOST: api.STATIC_HOST,
-          bookShelfData: res.data,
-          bookShelfCount: res.data.length,
+          bookShelfData: res.data
         });
         for (let i = 0;i < res.data.length; i++) {
           this.data.hasUpdate.push(0);   //用数组表示是否有更新, 1 有 0 无

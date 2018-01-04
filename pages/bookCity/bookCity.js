@@ -30,11 +30,11 @@ Page({
   //展开当前其他排行榜
   toggleList: function (e) {
     let id = e.target.dataset.id;
-    if(id === '0') {
+    if (id === '0') {
       this.setData({
         openMaleOther: !this.data.openMaleOther
       });
-    }else if (id === '1') {
+    } else if (id === '1') {
       this.setData({
         openFemaleOther: !this.data.openFemaleOther
       });
@@ -71,7 +71,7 @@ Page({
       success: res => {
         for (let key in res.data) {      //对于有别人家的排行榜的特殊处理  将追书替换为轻读
           for (let i = 0; i < res.data[key].length; i++) {
-            res.data[key][i].title = res.data[key][i].title.replace('追书','轻读');
+            res.data[key][i].title = res.data[key][i].title.replace('追书', '轻读');
             if (res.data[key][i].collapse) {
               res.data[key].splice(i, 0, {
                 title: '别人家的排行榜',

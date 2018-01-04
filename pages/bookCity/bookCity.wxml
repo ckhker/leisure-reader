@@ -1,14 +1,16 @@
 <!--pages/bookCity/bookCity.wxml-->
 <view>
   <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
-    <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">书单</view>
+    <!-- <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">书单</view>
     <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">分类</view>
-    <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">排行</view>
+    <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">排行</view> -->
+    <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">分类</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">排行</view>
   </scroll-view>
   <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
-    <swiper-item>
-      待开发。。。
-    </swiper-item>
+    <!-- <swiper-item>
+      敬请期待。。。
+    </swiper-item> -->
     <swiper-item>
       <scroll-view scroll-y="true" class="scroll-h">
         <view class="Cats">

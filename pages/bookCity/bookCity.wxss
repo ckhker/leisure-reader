@@ -15,9 +15,15 @@
   z-index: 99;
 }
 
-.tab-item {
+/* .tab-item {  有书单
   display: inline-block;
   width: 33.3%;
+  text-align: center;
+} */
+
+.tab-item {  
+  display: inline-block;
+  width: 50%;
   text-align: center;
 }
 
@@ -25,6 +31,18 @@
   color: #ec304c;
   position: relative;
 }
+
+/* .tab-item.active:after { 有书单
+  content: "";
+  display: block;
+  height: 4rpx;
+  width: 52rpx;
+  background: #ec304c;
+  position: absolute;
+  bottom: 0;
+  left: 98rpx;
+  border-radius: 16rpx;
+} */
 
 .tab-item.active:after {
   content: "";
@@ -34,7 +52,7 @@
   background: #ec304c;
   position: absolute;
   bottom: 0;
-  left: 98rpx;
+  left: 160rpx;
   border-radius: 16rpx;
 }
 

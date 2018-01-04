@@ -26,7 +26,7 @@
 				{
 					"id": 0,
 					"name": "debug",
-					"pathName": "pages/bookCity/bookCity",
+					"pathName": "pages/help/help",
 					"query": "book_id=5816b415b06d1d32157790b1"
 				}
 			]

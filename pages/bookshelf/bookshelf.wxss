@@ -71,7 +71,7 @@
   justify-content: space-between;
 }
 
-.edit,.refresh1 {
+.edit, .refresh1 {
   width: 50rpx;
   height: 50rpx;
 }
@@ -79,7 +79,7 @@
 .bookshelf_item {
   position: relative;
   width: 30%;
-  margin:0 30rpx 30rpx 0;
+  margin: 0 30rpx 30rpx 0;
 }
 
 .noMargin {
@@ -90,6 +90,13 @@
   width: 210rpx;
   height: 300rpx;
   margin: 0 auto;
+}
+
+.deletIcon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 20;
 }
 
 .bookshelf_item .name {
@@ -113,7 +120,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  z-index:10;
+  z-index: 10;
 }
 
 .noBooks {
@@ -123,3 +130,30 @@
   font-size: 16px;
   width: 100%;
 }
+
+@keyframes delete {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(1deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.deletAnimation {
+  animation:  delete 1s linear infinite;
+}
+
